@@ -1,0 +1,204 @@
+options:
+  parameters:
+    author: kristian
+    catch_exceptions: 'True'
+    category: '[GRC Hier Blocks]'
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: ''
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: qt_gui
+    hier_block_src_path: '.:'
+    id: rx
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: Not titled yet
+    window_size: (1000,1000)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 8]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: center_freq
+  id: variable
+  parameters:
+    comment: ''
+    value: 48.9e6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [312, 12.0]
+    rotation: 0
+    state: true
+- name: samp_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: '32000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [184, 12]
+    rotation: 0
+    state: enabled
+- name: blocks_file_sink_0
+  id: blocks_file_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    append: 'False'
+    comment: ''
+    file: ''
+    type: complex
+    unbuffered: 'False'
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1160, 252.0]
+    rotation: 0
+    state: true
+- name: digital_psk_demod_0
+  id: digital_psk_demod
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    constellation_points: '8'
+    differential: 'True'
+    excess_bw: '0.35'
+    freq_bw: 6.28/100.0
+    log: 'False'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    mod_code: '"gray"'
+    phase_bw: 6.28/100.0
+    samples_per_symbol: '2'
+    timing_bw: 6.28/100.0
+    verbose: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [384, 212.0]
+    rotation: 0
+    state: enabled
+- name: epy_block_0
+  id: epy_block
+  parameters:
+    _source_code: "\"\"\"\nEmbedded Python Blocks:\n\nEach time this file is saved,\
+      \ GRC will instantiate the first class it finds\nto get ports and parameters\
+      \ of your block. The arguments to __init__  will\nbe the parameters. All of\
+      \ them are required to have default values!\n\"\"\"\n\nimport numpy as np\n\
+      from gnuradio import gr\nfrom Crypto.Cipher import AES\nfrom Crypto.Random import\
+      \ get_random_bytes\n\n\nclass blk(gr.sync_block):  # other base classes are\
+      \ basic_block, decim_block, interp_block\n    \"\"\"Embedded Python Block example\
+      \ - a simple multiply const\"\"\"\n\n    def __init__(self, key = b'', iv =\
+      \ b'', mode = AES.MODE_CBC, key_size = 16, block_size = AES.block_size, padding\
+      \ = b'\\0', **kwargs):  # only default arguments here\n        \"\"\"arguments\
+      \ to this function show up as parameters in GRC\"\"\"\n        gr.sync_block.__init__(\n\
+      \            self,\n            name='AES Decrypt',   # will show up in GRC\n\
+      \            in_sig=[np.uint8],\n            out_sig=[np.complex64]\n      \
+      \  )\n        # if an attribute with the same name as a parameter is found,\n\
+      \        # a callback is registered (properties work, too).\n        self.key\
+      \ = key\n        self.iv = iv\n        self.mode = mode\n        self.key_size\
+      \ = key_size\n        self.block_size = block_size\n        self.padding = padding\n\
+      \n    def work(self, input_items, output_items):\n        \"\"\"example: multiply\
+      \ with constant\"\"\"\n        # Generate a random key\n        self.key = get_random_bytes(self.key_size)\n\
+      \        \n        # Create a cipher object\n        cipher = AES.new(self.key,\
+      \ AES.MODE_CBC)\n\n        # Encrypt the message\n        decrypt_msg = cipher.encrypt(input_items)\n\
+      \n        #Unpad message\n        output_items = decrypt_msg.rstrip(b'\\0')\n\
+      \n        return output_items"
+    affinity: ''
+    alias: ''
+    block_size: '16'
+    comment: ''
+    iv: b''
+    key: b''
+    key_size: '16'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    mode: '2'
+    padding: b'\x00'
+  states:
+    _io_cache: ('AES Decrypt', 'blk', [('key', "b''"), ('iv', "b''"), ('mode', '2'),
+      ('key_size', '16'), ('block_size', '16'), ('padding', "b'\\x00'")], [('0', 'byte',
+      1)], [('0', 'complex', 1)], 'Embedded Python Block example - a simple multiply
+      const', ['block_size', 'iv', 'key', 'key_size', 'mode', 'padding'])
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [880, 228.0]
+    rotation: 0
+    state: true
+- name: satellites_bpsk_demodulator_0
+  id: satellites_bpsk_demodulator
+  parameters:
+    affinity: ''
+    alias: ''
+    baudrate: ''
+    comment: ''
+    differential: 'False'
+    f_offset: '0'
+    iq: 'True'
+    manchester: 'False'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    options: '""'
+    samp_rate: samp_rate
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [312, 420.0]
+    rotation: 0
+    state: disabled
+- name: soapy_hackrf_source_0
+  id: soapy_hackrf_source
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: 'False'
+    bandwidth: '0'
+    center_freq: center_freq
+    comment: ''
+    dev_args: ''
+    gain: '16'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: samp_rate
+    type: fc32
+    vga: '16'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [80, 260.0]
+    rotation: 0
+    state: true
+
+connections:
+- [digital_psk_demod_0, '0', epy_block_0, '0']
+- [epy_block_0, '0', blocks_file_sink_0, '0']
+- [soapy_hackrf_source_0, '0', digital_psk_demod_0, '0']
+- [soapy_hackrf_source_0, '0', satellites_bpsk_demodulator_0, '0']
+
+metadata:
+  file_format: 1
