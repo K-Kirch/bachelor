@@ -1,0 +1,12 @@
+Randomly induced Error Tests: Test string 'This is a test message and my name is Kristian'
+Starting with an error probability of 0.05 I have a significantly small probability as to where it is random whether errors actually occur
+    Making minor increases in probability I will find the upper limit for the module
+        Errors are induced on a byte level
+    With the test string created, the high level implementation of Reed-Solomon FEC from the reedsolo module breaks with an error probability of 0.095 or 9.5%
+
+Randomly induced Burst Error Test: Test string 'This is a test message and my name is Kristian'
+Starting parameters error probability 0.1, max_burst_length 3, normal standard devitation 10, mean value 10
+    Error probability can increase to 0.11 (or 11%) before it breaks at 0.12
+
+Parameters are error probability 0.1, max_burst_length 3, normal standard devitation 20, mean value 20
+    Error probability can increase to 0.11 (or 11%) before it breaks at 0.12
