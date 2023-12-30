@@ -1,0 +1,60 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: My Bachelor Project
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Kristian Bonde
+    family-names: Kirch
+    email: kristian2000@gmail.com
+repository-code: >-
+  https://github.com/K-Kirch/bachelor/tree/782952a493453aba6f593e926dc16392023517f0
+abstract: >
+  This report will address the issue of security in
+  satellite communications through high-level implementation
+  of cryptographic protocols. Focusing on the Advanced
+  Encryption Standard (AES) for encryption and Reed-Solomon
+  Forward Error Correction (FEC) codes, my project will
+  focus on a high-level implementation meant for further
+  developments and tests in the DISCO project. Allowing
+  students a springboard for working with security and
+  reliability in satellite communications.
+
+  Developing the protocol in Python allows for a manageable
+  project that has a lower barrier for entry for future
+  students to work with across degrees. The AES is
+  internationally recognized and incredibly robust, and the
+  Reed-Solomon codes provide reliable communication with the
+  potential for introducing other protocols, such as
+  convolutional codes or turbo codes. 
+
+  Through testing, benchmarks are set, and the reliability
+  of the modules used in the development is tested. The
+  implementation proved successful as encryption and
+  decryption have shown success in continuity, and the
+  Reed-Solomon FEC has proved able to correct significant
+  corruption in the data. 
+
+  In conclusion, this project provides a platform for
+  students to engage with and understand the underlying
+  functionality of cryptography and FEC with a functional
+  model to work with. The FEC protocols are a critical piece
+  of the communications in current and future missions from
+  DISCO. Cryptography has previously not been of much
+  importance since the satellites carry no confidential
+  information, but with new projects being launched soon
+  with much more critical data capture and larger missions,
+  cryptography in communications will become increasingly
+  mission-critical. Underscoring the importance of building
+  the competencies within DISCO collaboration.
+keywords:
+  - Satellite Communication
+  - AES encryption
+  - Reed-Solomon codes
+  - Security
+  - Error Correction
+date-released: '2023-12-30'
